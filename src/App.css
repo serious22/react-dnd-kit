@@ -1,0 +1,16 @@
+.imgcontainer img
+{
+    width: 200px;
+    height: 200px;
+    margin: 2%;
+    display: flex;
+}
+
+.imgcontainer
+{
+    width: max-content;
+    padding: 1%;
+    margin-left: 2%;
+    margin-top: 2%;
+    border: 5px solid black;
+}
