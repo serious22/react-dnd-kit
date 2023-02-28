@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import Movableimg from './Movableimg';
+import { useDroppable } from '@dnd-kit/core';
 import '../App.css';
-
-
 
 const Allimages = [
   {
@@ -22,23 +21,56 @@ const Allimages = [
   }
 ];
 
-
-
 export default function Imgdrags() {
+  const [board, setBoard] = useState([]);
+  const {isOver,drop} = useDroppable({
+    data: {
+      accepts: ['image']
+    },
+    drop:(item) => {
+      addImageToBoard(item.id)
+    },
+  });
+  
+  const addImageToBoard = (id) => {
+    const pictureList = Allimages.filter((picture) => id === picture.id);
+    setBoard(board => [...board, pictureList[0]]);
+  };
+  
+
+  const style ={
+    border: isOver ? '5px solid green ': 'none'
+  };
   return (
     <>
-      <div className="imgcontainer">
-        {Allimages.map ((ele) =>
-          {
-            return<Movableimg key={ele.id} src = {ele.src} id = {ele.id} alt = {ele.atext}/>;
-          })
-        }
+      <div className="main">
+        <div className="imgcontainer">
+          {Allimages.map ((ele) => (
+            <Movableimg 
+              key={ele.id} 
+              src={ele.src} 
+              id={ele.id} 
+              alt={ele.atext}
+            />
+          ))}
+        </div>
+
+        <div className="imgdropper" ref={drop} style = {style}>
+          {board.map((ele) => (
+            <Movableimg
+              key={ele.id} 
+              src={ele.src} 
+              id={ele.id} 
+              alt={ele.atext}
+              addImageToBoard={addImageToBoard}
+            />
+          ))}
+        </div>
       </div>
-
-
-      <div className="imgdropper"></div>
-    
     </>
   )
 }
+
+
+
 
