@@ -3,7 +3,6 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities';
 import '../App.css';
 
-
 export default function Changeobjects(props) {
     const{
         attributes,
