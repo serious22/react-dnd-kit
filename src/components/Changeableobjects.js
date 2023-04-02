@@ -1,7 +1,7 @@
 import { arrayMove } from '@dnd-kit/sortable'
 
 
-export const names = ["my name","is","Sid"];
+export const names = ["Drag me 1","Drag me 2","Drag me 3"];
 export function handleDragEnd(event, items, setItems) {
   const { active, over } = event;
 
