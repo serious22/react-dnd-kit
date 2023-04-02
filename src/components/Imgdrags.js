@@ -29,6 +29,7 @@ export default function Imgdrags() {
     },
     drop:(item) => {
       addImageToBoard(item.id)
+      console.log(item.id);
     },
   });
   
